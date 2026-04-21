@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import aboutUsLandscape from '../assets/aboutUslandscape.jpeg';
+import portraitPlaceholder from '../assets/portraitPlaceholder1.jpeg';
+import heritageReveal from '../assets/heritageReveal.jpeg';
+import portraitPlaceholder2 from '../assets/portraitPlaceholder2.jpeg';
+import communityPlaceholder from '../assets/communityPlaceholder.jpeg';
 
 const Story = () => {
   // Scroll to top on mount
@@ -40,7 +45,9 @@ const Story = () => {
         {/* Section 1: History & Heritage */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-32">
           <div className="lg:col-span-5">
-            <ImagePlaceholder aspect="aspect-[4/5]" title="Heritage Reveal Placeholder" />
+            <div className="w-full aspect-[4/5] overflow-hidden group">
+              <img src={heritageReveal} alt="Heritage Reveal" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
+            </div>
           </div>
           <div className="lg:col-span-7 space-y-6">
             <h2 className="font-serif text-3xl md:text-4xl text-[#2D2D2D]">History & Heritage</h2>
@@ -72,7 +79,9 @@ const Story = () => {
               </p>
             </div>
           </div>
-          <ImagePlaceholder aspect="aspect-[21/9]" title="Mission Landscape Placeholder" />
+          <div className="w-full aspect-[21/9] overflow-hidden group">
+            <img src={aboutUsLandscape} alt="Mission Landscape" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
+          </div>
         </div>
 
         {/* Section 3: Character & Community */}
@@ -87,7 +96,9 @@ const Story = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* The Guardians */}
             <div className="space-y-6">
-              <ImagePlaceholder aspect="aspect-square" title="Portrait Placeholder 1" />
+              <div className="w-full aspect-square overflow-hidden group">
+                <img src={portraitPlaceholder} alt="Guardian Weaver" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" />
+              </div>
               <h3 className="font-serif text-2xl text-[#2D2D2D]">The Guardians of the Warp</h3>
               <p className="font-sans text-[#555555] leading-relaxed">
                 Our veteran weavers, many with over 40 years of experience, serve as the living libraries of the society. They can detect a tension flaw by the mere sound of the loom.
@@ -96,7 +107,9 @@ const Story = () => {
 
             {/* The New Guard */}
             <div className="space-y-6 md:mt-16">
-              <ImagePlaceholder aspect="aspect-square" title="Portrait Placeholder 2" />
+              <div className="w-full aspect-square overflow-hidden group">
+                <img src={portraitPlaceholder2} alt="The New Guard" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" />
+              </div>
               <h3 className="font-serif text-2xl text-[#2D2D2D]">The New Guard</h3>
               <p className="font-sans text-[#555555] leading-relaxed">
                 Younger members who are integrating modern design sensibilities with traditional Kasavu (gold thread) to ensure the craft stays relevant in the age of fast fashion.
@@ -105,7 +118,9 @@ const Story = () => {
 
             {/* Culture of Kinship */}
             <div className="space-y-6">
-              <ImagePlaceholder aspect="aspect-square" title="Community Placeholder" />
+              <div className="w-full aspect-square overflow-hidden group">
+                <img src={communityPlaceholder} alt="Culture of Kinship" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out" />
+              </div>
               <h3 className="font-serif text-2xl text-[#2D2D2D]">A Culture of Kinship</h3>
               <p className="font-sans text-[#555555] leading-relaxed">
                 The society isn't just a factory; it's a sanctuary. From the shared "chai" breaks to the collective effort of cleaning the looms after the 2018 monsoon floods, our strength lies in our "bubbly nature" and communal resilience.
