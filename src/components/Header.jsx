@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { navLinks, contactInfo } from '../constants';
 
 const Header = () => {
@@ -8,6 +9,20 @@ const Header = () => {
   
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
+  
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  const handleNavClick = (e, id) => {
+    if (isHome) {
+      e.preventDefault();
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setIsMenuOpen(false);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,11 +71,11 @@ const Header = () => {
           
           {/* Logo Section */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="/" className="flex flex-col group">
+            <Link to="/" className="flex flex-col group">
               <h1 className="font-serif text-2xl md:text-3xl font-bold tracking-tight text-[#2D2D2D]">
                 Paravur <span className="text-[#C5A059] italic">Handlooms</span>
               </h1>
-            </a>
+            </Link>
           </div>
           
           {/* Desktop Navigation */}
@@ -68,13 +83,14 @@ const Header = () => {
             <ul className="flex items-center space-x-10">
               {navLinks.map((link) => (
                 <li key={link.id}>
-                  <a 
-                    href={`#${link.id}`}
+                  <Link 
+                    to={`/#${link.id}`}
+                    onClick={(e) => handleNavClick(e, link.id)}
                     className="text-[#2D2D2D] hover:text-[#C5A059] font-sans text-xs uppercase tracking-widest transition-colors relative group"
                   >
                     {link.title}
                     <span className="absolute -bottom-2 left-0 w-0 h-px bg-[#C5A059] transition-all duration-300 group-hover:w-full"></span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -82,12 +98,13 @@ const Header = () => {
           
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center justify-end">
-            <a 
-              href={`#contact`}
+            <Link 
+              to="/#contact"
+              onClick={(e) => handleNavClick(e, 'contact')}
               className="font-sans text-xs uppercase tracking-widest text-[#2D2D2D] border border-[#2D2D2D] px-6 py-2 hover:bg-[#2D2D2D] hover:text-[#FAF9F6] transition-colors"
             >
               Inquire
-            </a>
+            </Link>
           </div>
           
           {/* Mobile Menu Toggle */}
@@ -120,14 +137,14 @@ const Header = () => {
       >
         <div className="px-4 py-6 space-y-4 text-center">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.id}
-              href={`#${link.id}`}
+              to={`/#${link.id}`}
               className="block font-serif text-xl text-[#2D2D2D] hover:text-[#C5A059] transition-colors"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => handleNavClick(e, link.id)}
             >
               {link.title}
-            </a>
+            </Link>
           ))}
         </div>
       </div>

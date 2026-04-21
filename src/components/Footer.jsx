@@ -1,8 +1,22 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { navLinks, contactInfo } from '../constants';
 import footerBg from '../assets/footerbg.jpeg';
 
 const Footer = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  const handleNavClick = (e, id) => {
+    if (isHome) {
+      e.preventDefault();
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -41,9 +55,13 @@ const Footer = () => {
             <ul className="space-y-4">
               {navLinks.map((link) => (
                 <li key={`footer-${link.id}`}>
-                  <a href={`#${link.id}`} className="font-sans text-sm text-gray-300 hover:text-white transition-colors">
+                  <Link 
+                    to={`/#${link.id}`} 
+                    onClick={(e) => handleNavClick(e, link.id)}
+                    className="font-sans text-sm text-gray-300 hover:text-white transition-colors"
+                  >
                     {link.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -53,9 +71,9 @@ const Footer = () => {
           <div>
             <h3 className="font-sans text-xs uppercase tracking-widest text-[#C5A059] mb-6 font-semibold">The Society</h3>
             <ul className="space-y-4">
-              <li><a href="#about" className="font-sans text-sm text-gray-300 hover:text-white transition-colors">Our History</a></li>
-              <li><a href="#artisans" className="font-sans text-sm text-gray-300 hover:text-white transition-colors">Meet the Weavers</a></li>
-              <li><a href="#shop" className="font-sans text-sm text-gray-300 hover:text-white transition-colors">GI Tagged Sarees</a></li>
+              <li><Link to="/#about" onClick={(e) => handleNavClick(e, 'about')} className="font-sans text-sm text-gray-300 hover:text-white transition-colors">Our History</Link></li>
+              <li><Link to="/#artisans" onClick={(e) => handleNavClick(e, 'artisans')} className="font-sans text-sm text-gray-300 hover:text-white transition-colors">Meet the Weavers</Link></li>
+              <li><Link to="/#shop" onClick={(e) => handleNavClick(e, 'shop')} className="font-sans text-sm text-gray-300 hover:text-white transition-colors">GI Tagged Sarees</Link></li>
             </ul>
           </div>
 
